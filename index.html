@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Emotion-Based Notes</title>
   <style>
-    /* General styling for all elements on the page */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -13,14 +12,12 @@
       font-family: Arial, sans-serif;
     }
 
-    /* Basic background styling for the page */
     body {
       background: linear-gradient(180deg, #fff6fb, #ffeef7);
       color: #444;
       min-height: 100vh;
     }
 
-    /* Styling the header with background color and shadow */
     header {
       background: #ff8fb1;
       color: white;
@@ -29,19 +26,16 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
 
-    /* Set the header title size */
     header h1 {
       font-size: 32px;
     }
 
-    /* Main container styling */
     .container {
       width: 92%;
       max-width: 1200px;
       margin: 28px auto;
     }
 
-    /* Styling the search bar and buttons (Add Note and Trash) */
     .top-bar {
       display: flex;
       gap: 12px;
@@ -49,14 +43,12 @@
       margin-bottom: 22px;
     }
 
-    /* Styling the search input box */
     .search-box {
       flex: 1;
       min-width: 260px;
       position: relative;
     }
 
-    /* Set position of the search icon inside the input box */
     .search-box span {
       position: absolute;
       left: 14px;
@@ -66,7 +58,6 @@
       opacity: 0.7;
     }
 
-    /* Styling the search input field when the user types */
     .search-box input {
       width: 100%;
       padding: 14px 14px 14px 42px;
@@ -77,7 +68,6 @@
       font-size: 15px;
     }
 
-    /* Styling for the buttons used for adding notes and trash */
     .add-btn,
     .trash-btn {
       border: none;
@@ -90,27 +80,22 @@
       box-shadow: 0 4px 10px rgba(255, 111, 158, 0.25);
     }
 
-    /* Styling for Add Note button */
     .add-btn {
       background: #ff6f9e;
     }
 
-    /* Hover effect for Add Note button */
     .add-btn:hover {
       background: #ff5a8f;
     }
 
-    /* Styling for Trash button */
     .trash-btn {
       background: #c77d92;
     }
 
-    /* Hover effect for Trash button */
     .trash-btn:hover {
       background: #b46b80;
     }
 
-    /* Styling for the form to add a new note */
     .note-form,
     .trash-section {
       display: none;
@@ -122,14 +107,12 @@
       box-shadow: 0 10px 22px rgba(255, 143, 177, 0.18);
     }
 
-    /* Styling the form title and trash section title */
     .note-form h2,
     .trash-section h2 {
       color: #d84f84;
       margin-bottom: 16px;
     }
 
-    /* Styling inputs, textareas, and select elements inside the note form */
     .note-form input,
     .note-form textarea,
     .note-form select {
@@ -143,13 +126,11 @@
       background: #fffdfd;
     }
 
-    /* Styling the text area inside the form */
     .note-form textarea {
       min-height: 120px;
       resize: vertical;
     }
 
-    /* Styling for form buttons (Save, Cancel, etc.) */
     .form-buttons {
       display: flex;
       gap: 10px;
@@ -157,8 +138,14 @@
       margin-top: 6px;
     }
 
-    /* Styling for buttons inside the form */
-    .save-btn, .cancel-btn, .restore-btn, .delete-forever-btn, .pin-btn, .view-btn, .edit-btn, .delete-btn {
+    .save-btn,
+    .cancel-btn,
+    .restore-btn,
+    .delete-forever-btn,
+    .pin-btn,
+    .view-btn,
+    .edit-btn,
+    .delete-btn {
       border: none;
       padding: 10px 12px;
       border-radius: 10px;
@@ -177,7 +164,6 @@
     .edit-btn { background: #ff9bb8; }
     .delete-btn { background: #e05d85; }
 
-    /* Hover effect for form buttons */
     .save-btn:hover { background: #ff5a8f; }
     .cancel-btn:hover { background: #a6677b; }
     .restore-btn:hover { background: #55985c; }
@@ -187,7 +173,6 @@
     .edit-btn:hover { background: #f388aa; }
     .delete-btn:hover { background: #cc4a72; }
 
-    /* Styling for notes and trash grids */
     .notes-grid,
     .trash-grid {
       display: grid;
@@ -195,7 +180,6 @@
       gap: 22px;
     }
 
-    /* Styling the note card */
     .note-card {
       position: relative;
       min-height: 320px;
@@ -212,13 +196,23 @@
       transform: rotate(1deg);
     }
 
-    /* Hover effect for note card */
     .note-card:hover {
       transform: scale(1.03) rotate(0deg);
       box-shadow: 0 14px 25px rgba(0,0,0,0.12);
     }
 
-    /* Styling for the note title */
+    .note-card::before {
+      content: "";
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 62px;
+      height: 18px;
+      background: rgba(255,255,255,0.55);
+      border-radius: 4px;
+    }
+
     .note-card h3 {
       margin-top: 18px;
       margin-bottom: 10px;
@@ -226,7 +220,6 @@
       word-break: break-word;
     }
 
-    /* Styling for note content */
     .note-card p {
       line-height: 1.5;
       min-height: 80px;
@@ -235,7 +228,6 @@
       margin-bottom: 10px;
     }
 
-    /* Styling for category and emotion labels inside the note */
     .note-category,
     .note-emotion {
       display: inline-flex;
@@ -251,7 +243,6 @@
       color: #444;
     }
 
-    /* Styling for emotion image inside the note */
     .emotion-img {
       width: 20px;
       height: 20px;
@@ -266,7 +257,6 @@
       transform: scale(1.2);
     }
 
-    /* Styling for emotion tips */
     .emotion-tip {
       margin-top: 8px;
       padding: 10px 12px;
@@ -277,7 +267,6 @@
       font-weight: bold;
     }
 
-    /* Styling for the note's date */
     .note-date {
       font-size: 12px;
       opacity: 0.8;
@@ -285,7 +274,6 @@
       display: block;
     }
 
-    /* Styling for note actions (pin, view, edit, delete) */
     .note-actions {
       display: flex;
       gap: 8px;
@@ -293,7 +281,6 @@
       margin-top: 10px;
     }
 
-    /* Styling for the empty state when no notes are present */
     .empty-state {
       text-align: center;
       padding: 40px 20px;
@@ -305,7 +292,6 @@
       grid-column: 1 / -1;
     }
 
-    /* Styling for the emotional states (Happy, Sad, Stressed, Angry, etc.) */
     .happy {
       background: #ffd6e8;
       border-left: 6px solid #ff69b4;
@@ -356,7 +342,6 @@
       color: #5f3472;
     }
 
-    /* Styling for the image modal */
     .image-modal {
       display: none;
       position: fixed;
@@ -371,7 +356,6 @@
       padding: 20px;
     }
 
-    /* Styling for the modal content */
     .modal-content {
       text-align: center;
       background: white;
@@ -382,7 +366,6 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.25);
     }
 
-    /* Styling for the image inside the modal */
     .modal-content img {
       width: 100%;
       max-height: 300px;
@@ -392,21 +375,18 @@
       background: #fff;
     }
 
-    /* Styling for the modal title */
     .modal-content h2 {
       margin: 10px 0 6px;
       color: #444;
       font-size: 24px;
     }
 
-    /* Styling for the modal description text */
     .modal-content p {
       font-size: 14px;
       color: #666;
       line-height: 1.5;
     }
 
-    /* Custom styling for smaller screens */
     @media (max-width: 640px) {
       header h1 {
         font-size: 26px;
@@ -416,7 +396,595 @@
 </head>
 <body>
 
-  <!-- The rest of the code follows here -->
+  <header>
+    <h1>My Emotion Notes</h1>
+  </header>
 
+  <div class="container">
+    <div class="top-bar">
+      <div class="search-box">
+        <span>🔍</span>
+        <input type="text" id="searchInput" placeholder="Search notes, category, or emotion..." />
+      </div>
+      <button class="add-btn" onclick="showForm()">Add Note</button>
+      <button class="trash-btn" onclick="toggleTrashSection()">Trash</button>
+    </div>
+
+    <div class="note-form" id="noteForm">
+      <h2 id="formTitle">Add New Note</h2>
+
+      <input type="text" id="noteTitle" placeholder="Enter note title" />
+      <textarea id="noteContent" placeholder="Write your note here..."></textarea>
+
+      <select id="noteCategory">
+        <option value="Study">Study</option>
+        <option value="Personal">Personal</option>
+        <option value="Work">Work</option>
+      </select>
+
+      <input type="password" id="notePassword" placeholder="Password (optional)" />
+
+      <div class="form-buttons">
+        <button class="save-btn" onclick="saveNote()">Save</button>
+        <button class="cancel-btn" onclick="hideForm()">Cancel</button>
+      </div>
+    </div>
+
+    <div class="trash-section" id="trashSection">
+      <h2>Trash</h2>
+      <div class="trash-grid" id="trashContainer"></div>
+    </div>
+
+    <div class="notes-grid" id="notesContainer"></div>
+  </div>
+
+  <div id="imageModal" class="image-modal" onclick="closeImageModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <img id="modalImage" src="" alt="Emotion Character">
+      <h2 id="modalTitle"></h2>
+      <p id="modalDesc"></p>
+    </div>
+  </div>
+
+  <script>
+    let notes = JSON.parse(localStorage.getItem("notes")) || [];
+    let trashNotes = JSON.parse(localStorage.getItem("trashNotes")) || [];
+    let editIndex = -1;
+
+    function saveToLocalStorage() {
+      localStorage.setItem("notes", JSON.stringify(notes));
+      localStorage.setItem("trashNotes", JSON.stringify(trashNotes));
+    }
+
+    function formatDate(dateString) {
+      const date = new Date(dateString);
+      return date.toLocaleString();
+    }
+
+    function normalizeText(text) {
+      return text
+        .toLowerCase()
+        .replace(/[^\w\s\u0600-\u06FF]/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    function getEmotionDetails(emotion) {
+      const details = {
+        Happy: {
+          label: "Happy",
+          color: "Pink",
+          image: "happy.jpg"
+        },
+        Sad: {
+          label: "Sad",
+          color: "Blue",
+          image: "sad.jpg"
+        },
+        Stressed: {
+          label: "Stressed",
+          color: "Orange",
+          image: "stressed.jpg"
+        },
+        Angry: {
+          label: "Angry",
+          color: "Red",
+          image: "angry.jpg"
+        },
+        Scared: {
+          label: "Scared",
+          color: "Yellow",
+          image: "scared.jpg"
+        },
+        Depressed: {
+          label: "Depressed",
+          color: "Black",
+          image: "depressed.jpg"
+        },
+        Neutral: {
+          label: "Neutral",
+          color: "Purple",
+          image: "happy.jpg"
+        }
+      };
+
+      return details[emotion] || details.Neutral;
+    }
+
+    function getDynamicTip(emotion, content) {
+      const text = content.toLowerCase();
+
+      const tips = {
+        Happy: [
+          "Keep enjoying this moment, you deserve it 💖",
+          "Your happiness is shining, hold onto it ✨",
+          "This is beautiful, write more about what made you smile 😊",
+          "Moments like this matter, don’t forget them 💫",
+          "You deserve to feel this joy, keep it close 🌸",
+          "This positive energy looks amazing on you 💕"
+        ],
+        Sad: [
+          "It’s okay to feel sad, your feelings are valid 💙",
+          "Let it out, writing is healing 🫶",
+          "You’re stronger than this moment, keep going 🌧️➡️☀️",
+          "Take your time, healing isn’t rushed 🤍",
+          "Be gentle with yourself today 💙",
+          "Even heavy feelings will pass with time 🌙"
+        ],
+        Stressed: [
+          "Take a deep breath, one step at a time 🧡",
+          "You’re doing your best, that’s enough 💪",
+          "Pause, breathe, then continue calmly 🌿",
+          "You can handle this, just slow down a little",
+          "Focus on one thing at a time, not everything at once 📌",
+          "Pressure doesn’t define you, your effort does ✨"
+        ],
+        Angry: [
+          "Pause for a moment, don’t react too fast ❤️",
+          "Your feelings are valid, but stay in control 🔥➡️🧘",
+          "Take a breath before you respond",
+          "Let it out here instead of hurting yourself or others",
+          "Your anger is real, but it doesn’t have to lead you",
+          "Breathe first, respond later ❤️"
+        ],
+        Scared: [
+          "Fear is okay, but don’t let it control you 💛",
+          "You’re safer than you think 🌟",
+          "Face it step by step, you got this",
+          "Courage grows when you move forward anyway",
+          "Small brave steps still count 💫",
+          "You are stronger than the fear in this moment 🌈"
+        ],
+        Depressed: [
+          "You’re not alone, even if it feels like it 🖤",
+          "Take it slow, even small steps matter",
+          "You matter more than you think 🤍",
+          "Rest if you need, but don’t give up",
+          "One gentle step today is enough 🕊️",
+          "You deserve kindness, especially from yourself 🤍"
+        ],
+        Neutral: [
+          "Write what’s on your mind freely ✨",
+          "Every thought matters, keep writing 📝",
+          "This is your space, express yourself",
+          "Even small thoughts are important",
+          "Your words still matter, even on ordinary days 🌷",
+          "Keep writing, your thoughts deserve space 💫"
+        ]
+      };
+
+      let emotionTips = tips[emotion] || tips.Neutral;
+      let randomTip = emotionTips[Math.floor(Math.random() * emotionTips.length)];
+
+      if (text.includes("exam") || text.includes("test") || text.includes("quiz") || text.includes("اختبار") || text.includes("امتحان")) {
+        randomTip = "You’ve prepared more than you think, stay calm and focused 📚";
+      } else if (text.includes("tired") || text.includes("exhausted") || text.includes("تعب") || text.includes("مرهق")) {
+        randomTip = "Rest is part of progress, don’t feel guilty about slowing down 😌";
+      } else if (text.includes("friend") || text.includes("friendship") || text.includes("صديق") || text.includes("صديقتي")) {
+        randomTip = "Relationships can be complicated, but your feelings still matter 💞";
+      } else if (text.includes("family") || text.includes("mother") || text.includes("father") || text.includes("أهلي") || text.includes("أمي") || text.includes("أبوي")) {
+        randomTip = "Family emotions can feel heavy, so give yourself patience and grace 🤍";
+      } else if (text.includes("love") || text.includes("crush") || text.includes("احب") || text.includes("حب")) {
+        randomTip = "Love brings deep feelings, so be honest with your heart and gentle with yourself 💗";
+      } else if (text.includes("work") || text.includes("job") || text.includes("شغل") || text.includes("وظيفة")) {
+        randomTip = "You are doing more than enough, keep going one task at a time 💼";
+      } else if (text.includes("study") || text.includes("homework") || text.includes("دراسة") || text.includes("واجب")) {
+        randomTip = "Progress in studying happens little by little, keep moving forward 📘";
+      } else if (text.includes("happy") || text.includes("سعيد") || text.includes("فرحان")) {
+        randomTip = "This joy looks real, hold onto it and celebrate it 🎉";
+      } else if (text.includes("sad") || text.includes("حزين") || text.includes("زعلان")) {
+        randomTip = "It’s okay to feel low sometimes, your heart still deserves softness 💙";
+      } else if (text.includes("angry") || text.includes("غاضب") || text.includes("معصب")) {
+        randomTip = "Your anger says something matters to you, breathe before acting ❤️";
+      } else if (text.includes("scared") || text.includes("afraid") || text.includes("خائف") || text.includes("خايف")) {
+        randomTip = "Fear can feel loud, but your strength is louder 💛";
+      } else if (text.includes("depressed") || text.includes("مكتئب") || text.includes("مالي نفس")) {
+        randomTip = "You do not have to carry everything at once, one small step is enough today 🖤";
+      }
+
+      return randomTip;
+    }
+
+    function analyzeEmotion(text) {
+      const cleanText = normalizeText(text);
+
+      const happyWords = [
+        "happy", "joy", "joyful", "excited", "love", "great", "good",
+        "wonderful", "amazing", "awesome", "fun", "smile", "glad",
+        "سعيد", "سعيدة", "مبسوط", "مبسوطة", "فرحان", "فرحانة",
+        "فرح", "احب", "أحب", "متحمس", "متحمسة", "مستانس", "مستانسة"
+      ];
+
+      const sadWords = [
+        "sad", "cry", "crying", "upset", "hurt", "lonely", "broken",
+        "pain", "miss", "empty", "down",
+        "حزين", "حزينة", "زعلان", "زعلانة", "زعل", "بكيت",
+        "مكسور", "مكسورة", "متضايق", "متضايقة", "وحيد", "وحيدة"
+      ];
+
+      const stressedWords = [
+        "stress", "stressed", "anxious", "anxiety", "worry", "worried",
+        "pressure", "deadline", "exam", "busy", "panic", "nervous",
+        "متوتر", "متوترة", "توتر", "قلق", "قلقان", "قلقانة",
+        "مضغوط", "مضغوطة", "ضغط", "اختبار", "امتحان", "مرهق", "مرهقة"
+      ];
+
+      const angryWords = [
+        "angry", "mad", "furious", "annoyed", "irritated", "rage",
+        "غاضب", "غاضبة", "معصب", "معصبة", "عصبية", "عصب", "منقهر", "منقهرة"
+      ];
+
+      const scaredWords = [
+        "scared", "afraid", "fear", "terrified", "frightened",
+        "خائف", "خايف", "خايفة", "خائفة", "خوف", "مرعوب", "مرعوبة"
+      ];
+
+      const depressedWords = [
+        "depressed", "depression", "hopeless", "worthless", "numb",
+        "مكتئب", "مكتئبة", "اكتئاب", "يائس", "يائسة", "مالي نفس", "بدون طاقة"
+      ];
+
+      let happyScore = 0;
+      let sadScore = 0;
+      let stressedScore = 0;
+      let angryScore = 0;
+      let scaredScore = 0;
+      let depressedScore = 0;
+
+      happyWords.forEach(word => { if (cleanText.includes(word)) happyScore++; });
+      sadWords.forEach(word => { if (cleanText.includes(word)) sadScore++; });
+      stressedWords.forEach(word => { if (cleanText.includes(word)) stressedScore++; });
+      angryWords.forEach(word => { if (cleanText.includes(word)) angryScore++; });
+      scaredWords.forEach(word => { if (cleanText.includes(word)) scaredScore++; });
+      depressedWords.forEach(word => { if (cleanText.includes(word)) depressedScore++; });
+
+      const scores = [
+        { emotion: "Happy", score: happyScore },
+        { emotion: "Sad", score: sadScore },
+        { emotion: "Stressed", score: stressedScore },
+        { emotion: "Angry", score: angryScore },
+        { emotion: "Scared", score: scaredScore },
+        { emotion: "Depressed", score: depressedScore }
+      ];
+
+      scores.sort((a, b) => b.score - a.score);
+
+      if (scores[0].score === 0) return "Neutral";
+      return scores[0].emotion;
+    }
+
+    function getEmotionClass(emotion) {
+      switch (emotion) {
+        case "Happy": return "happy";
+        case "Sad": return "sad";
+        case "Stressed": return "stressed";
+        case "Angry": return "angry";
+        case "Scared": return "scared";
+        case "Depressed": return "depressed";
+        default: return "neutral";
+      }
+    }
+
+    function getEmotionPriority(emotion) {
+      switch (emotion) {
+        case "Angry": return 1;
+        case "Stressed": return 2;
+        case "Scared": return 3;
+        case "Depressed": return 4;
+        case "Sad": return 5;
+        case "Happy": return 6;
+        default: return 7;
+      }
+    }
+
+    function sortNotes(list) {
+      return [...list].sort((a, b) => {
+        if (b.pinned !== a.pinned) {
+          return b.pinned - a.pinned;
+        }
+        return getEmotionPriority(a.emotion) - getEmotionPriority(b.emotion);
+      });
+    }
+
+    function renderNotes(filteredNotes = notes) {
+      const notesContainer = document.getElementById("notesContainer");
+      notesContainer.innerHTML = "";
+
+      if (filteredNotes.length === 0) {
+        notesContainer.innerHTML = `
+          <div class="empty-state">
+            No notes found. Start by adding your first note
+          </div>
+        `;
+        return;
+      }
+
+      const sortedNotes = sortNotes(filteredNotes);
+
+      sortedNotes.forEach((note) => {
+        const originalIndex = notes.findIndex(
+          n =>
+            n.title === note.title &&
+            n.content === note.content &&
+            n.date === note.date &&
+            n.category === note.category &&
+            n.password === note.password &&
+            n.pinned === note.pinned &&
+            n.emotion === note.emotion
+        );
+
+        const info = getEmotionDetails(note.emotion);
+        const noteCard = document.createElement("div");
+        noteCard.className = `note-card ${getEmotionClass(note.emotion)}`;
+
+        noteCard.innerHTML = `
+          <h3>${note.pinned ? "📌 " : ""}${note.title}</h3>
+          <div class="note-category">${note.category}</div>
+          <div class="note-emotion">
+            <img src="${info.image}" alt="${info.label}" class="emotion-img"
+                 onclick="openImageModal('${info.image}', '${info.label}')"
+                 onerror="this.style.display='none'">
+            ${info.label}
+          </div>
+          <p>${note.password ? "Protected note" : note.content}</p>
+          <div class="emotion-tip">${getDynamicTip(note.emotion, note.content)}</div>
+          <span class="note-date">Time: ${formatDate(note.date)}</span>
+
+          <div class="note-actions">
+            <button class="pin-btn" onclick="togglePin(${originalIndex})">
+              ${note.pinned ? "Unpin" : "Pin"}
+            </button>
+            <button class="view-btn" onclick="openNote(${originalIndex})">View</button>
+            <button class="edit-btn" onclick="editNote(${originalIndex})">Edit</button>
+            <button class="delete-btn" onclick="deleteNote(${originalIndex})">Delete</button>
+          </div>
+        `;
+
+        notesContainer.appendChild(noteCard);
+      });
+    }
+
+    function renderTrash() {
+      const trashContainer = document.getElementById("trashContainer");
+      trashContainer.innerHTML = "";
+
+      if (trashNotes.length === 0) {
+        trashContainer.innerHTML = `
+          <div class="empty-state">
+            Trash is empty
+          </div>
+        `;
+        return;
+      }
+
+      trashNotes.forEach((note, index) => {
+        const info = getEmotionDetails(note.emotion);
+        const noteCard = document.createElement("div");
+        noteCard.className = `note-card ${getEmotionClass(note.emotion)}`;
+
+        noteCard.innerHTML = `
+          <h3>${note.title}</h3>
+          <div class="note-category">${note.category}</div>
+          <div class="note-emotion">
+            <img src="${info.image}" alt="${info.label}" class="emotion-img"
+                 onclick="openImageModal('${info.image}', '${info.label}')"
+                 onerror="this.style.display='none'">
+            ${info.label}
+          </div>
+          <p>${note.password ? "Protected note" : note.content}</p>
+          <div class="emotion-tip">${getDynamicTip(note.emotion, note.content)}</div>
+          <span class="note-date">Time: ${formatDate(note.date)}</span>
+
+          <div class="note-actions">
+            <button class="restore-btn" onclick="restoreNote(${index})">Restore</button>
+            <button class="delete-forever-btn" onclick="deleteForever(${index})">Delete Forever</button>
+          </div>
+        `;
+
+        trashContainer.appendChild(noteCard);
+      });
+    }
+
+    function showForm() {
+      document.getElementById("noteForm").style.display = "block";
+    }
+
+    function hideForm() {
+      document.getElementById("noteForm").style.display = "none";
+      document.getElementById("noteTitle").value = "";
+      document.getElementById("noteContent").value = "";
+      document.getElementById("noteCategory").value = "Study";
+      document.getElementById("notePassword").value = "";
+      document.getElementById("formTitle").innerText = "Add New Note";
+      editIndex = -1;
+    }
+
+    function saveNote() {
+      const title = document.getElementById("noteTitle").value.trim();
+      const content = document.getElementById("noteContent").value.trim();
+      const category = document.getElementById("noteCategory").value;
+      const password = document.getElementById("notePassword").value;
+      const emotion = analyzeEmotion(content);
+
+      if (title === "" || content === "") {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      const noteData = {
+        title,
+        content,
+        category,
+        password,
+        emotion,
+        pinned: false,
+        date: new Date().toISOString()
+      };
+
+      if (editIndex === -1) {
+        notes.push(noteData);
+      } else {
+        notes[editIndex] = {
+          ...notes[editIndex],
+          title,
+          content,
+          category,
+          password,
+          emotion
+        };
+      }
+
+      saveToLocalStorage();
+      renderNotes();
+      renderTrash();
+      hideForm();
+    }
+
+    function editNote(index) {
+      const note = notes[index];
+
+      if (note.password) {
+        const input = prompt("Enter password to edit this note:");
+        if (input !== note.password) {
+          alert("Wrong password!");
+          return;
+        }
+      }
+
+      document.getElementById("noteForm").style.display = "block";
+      document.getElementById("formTitle").innerText = "Edit Note";
+      document.getElementById("noteTitle").value = note.title;
+      document.getElementById("noteContent").value = note.content;
+      document.getElementById("noteCategory").value = note.category;
+      document.getElementById("notePassword").value = note.password;
+      editIndex = index;
+    }
+
+    function togglePin(index) {
+      notes[index].pinned = !notes[index].pinned;
+      saveToLocalStorage();
+      renderNotes();
+    }
+
+    function openImageModal(src, emotion) {
+      document.getElementById("modalImage").src = src;
+      document.getElementById("modalTitle").innerText = emotion;
+      document.getElementById("modalDesc").innerText = "This represents your current feeling 💭";
+      document.getElementById("imageModal").style.display = "flex";
+    }
+
+    function closeImageModal() {
+      document.getElementById("imageModal").style.display = "none";
+    }
+
+    function openNote(index) {
+      const note = notes[index];
+      const info = getEmotionDetails(note.emotion);
+      const dynamicTip = getDynamicTip(note.emotion, note.content);
+
+      if (note.password) {
+        const input = prompt("Enter password to open this note:");
+        if (input !== note.password) {
+          alert("Wrong password!");
+          return;
+        }
+      }
+
+      alert(
+        `Detected Emotion: ${info.label}\n` +
+        `Color: ${info.color}\n\n` +
+        `Message:\n${dynamicTip}\n\n` +
+        `${note.content}`
+      );
+    }
+
+    function deleteNote(index) {
+      const note = notes[index];
+
+      if (confirm("Are you sure you want to move this note to trash?")) {
+        trashNotes.push(note);
+        notes.splice(index, 1);
+        saveToLocalStorage();
+        renderNotes();
+        renderTrash();
+      }
+    }
+
+    function restoreNote(index) {
+      notes.push(trashNotes[index]);
+      trashNotes.splice(index, 1);
+      saveToLocalStorage();
+      renderNotes();
+      renderTrash();
+    }
+
+    function deleteForever(index) {
+      if (confirm("Delete this note forever?")) {
+        trashNotes.splice(index, 1);
+        saveToLocalStorage();
+        renderTrash();
+      }
+    }
+
+    function toggleTrashSection() {
+      const trashSection = document.getElementById("trashSection");
+
+      if (trashSection.style.display === "block") {
+        trashSection.style.display = "none";
+      } else {
+        trashSection.style.display = "block";
+        renderTrash();
+      }
+    }
+
+    function searchNotes() {
+      const searchValue = document.getElementById("searchInput").value.toLowerCase();
+
+      const filteredNotes = notes.filter(note =>
+        note.title.toLowerCase().includes(searchValue) ||
+        note.content.toLowerCase().includes(searchValue) ||
+        note.category.toLowerCase().includes(searchValue) ||
+        (note.emotion && note.emotion.toLowerCase().includes(searchValue))
+      );
+
+      renderNotes(filteredNotes);
+    }
+
+    document.getElementById("searchInput").addEventListener("keyup", searchNotes);
+
+    notes = notes.map(note => ({
+      ...note,
+      emotion: note.emotion || analyzeEmotion(note.content || "")
+    }));
+
+    trashNotes = trashNotes.map(note => ({
+      ...note,
+      emotion: note.emotion || analyzeEmotion(note.content || "")
+    }));
+
+    saveToLocalStorage();
+    renderNotes();
+    renderTrash();
+  </script>
 </body>
 </html>
